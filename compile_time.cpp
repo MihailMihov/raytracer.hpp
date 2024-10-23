@@ -73,9 +73,19 @@ private:
 
 }
 
+consteval auto ray_trace() {
+    ray_tracer r{};
+
+    static_canvas<IMAGE_WIDTH, IMAGE_HEIGHT> c{};
+
+    r.render(static_scene{}, c, c.width, c.height);
+
+    return c;
+}
+
 int main()
 {
-    constexpr auto image = [] {
+    constexpr auto image = [](){
         ray_tracer r{};
         static_canvas<IMAGE_WIDTH, IMAGE_HEIGHT> c{};
         r.render(static_scene{}, c, c.width, c.height);
